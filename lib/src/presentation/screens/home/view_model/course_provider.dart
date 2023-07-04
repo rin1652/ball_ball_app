@@ -18,6 +18,11 @@ class CourseNotifier extends StateNotifier<List<Course>> {
     await ref.read(courseRepoProvider).createCourse(course);
     getListCourse();
   }
+
+  Future<void> deleteCourse(int id) async {
+    await ref.read(courseRepoProvider).deleteCourse(id);
+    getListCourse();
+  }
 }
 
 final courseProvider = StateNotifierProvider<CourseNotifier, List<Course>>(
