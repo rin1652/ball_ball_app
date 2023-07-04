@@ -24,4 +24,8 @@ class CourseRepo {
   Future<void> deleteCourse(int id) async {
     await ref.read(courseApiProvider).deleteCourse(id);
   }
+
+  Future<void> updateCourse(Course course) async {
+    await ref.read(courseApiProvider).updateCourse(course);
+  }
 }
