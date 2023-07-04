@@ -59,8 +59,19 @@ class CourseRepositoryImpl implements CourseApi {
   }
 
   @override
-  Future<void> updateCourse(Course course) {
-    // TODO: implement updateCourse
-    throw UnimplementedError();
+  Future<void> updateCourse(Course course) async {
+    final url = Uri.parse('$link/${course.id}');
+    final response = await http.delete(
+      url,
+      headers: {
+        HttpHeaders.authorizationHeader: 'key abc',
+      },
+      body: Course.toMap(course),
+    );
+
+    if (response.statusCode == 200) {
+    } else {
+      throw Exception('Failed to load course');
+    }
   }
 }
