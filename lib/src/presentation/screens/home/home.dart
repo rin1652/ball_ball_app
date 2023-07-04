@@ -1,0 +1,46 @@
+import 'package:ball_ball/src/presentation/screens/home/view_model/course_provider.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../domain/models/course.dart';
+
+class HomeScreen extends ConsumerStatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends ConsumerState<HomeScreen> {
+  late Future<void> loadData;
+
+  @override
+  void initState() {
+    super.initState();
+    loadData = ref.read(courseProvider.notifier).getListCourse();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    List<Course> listCourse = ref.watch(courseProvider).reversed.toList();
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Demo repository"),
+      ),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(children: [
+            ...listCourse.map((e) => Text(e.name)).toList(),
+            ElevatedButton(
+                onPressed: () {
+                  ref.read(courseProvider.notifier).createCourse(
+                      Course(id: 2, name: 'C++', description: 'C++ is dark'));
+                },
+                child: const Text('Click add')),
+          ]),
+        ),
+      ),
+    );
+  }
+}
