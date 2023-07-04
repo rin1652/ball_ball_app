@@ -59,8 +59,7 @@ class CourseRepositoryImpl implements CourseApi {
   }
 
   @override
-  Future<void> updateCourse(Course course) {
-    // TODO: implement updateCourse
-    throw UnimplementedError();
+  Future<void> updateCourse(Course course) async {
+    print('update course');
   }
 }
