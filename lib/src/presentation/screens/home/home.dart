@@ -12,14 +12,6 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
-  late Future<void> loadData;
-
-  @override
-  void initState() {
-    super.initState();
-    loadData = ref.read(courseProvider.notifier).getListCourse();
-  }
-
   @override
   Widget build(BuildContext context) {
     List<Course> listCourse = ref.watch(courseProvider).reversed.toList();

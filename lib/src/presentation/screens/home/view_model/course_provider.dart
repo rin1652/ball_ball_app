@@ -7,7 +7,9 @@ class CourseNotifier extends StateNotifier<List<Course>> {
   Ref ref;
   CourseNotifier(
     this.ref,
-  ) : super([]);
+  ) : super([]) {
+    getListCourse();
+  }
 
   Future<void> getListCourse() async {
     final listCourse = await ref.read(courseRepoProvider).getListCourse();
@@ -21,9 +23,10 @@ class CourseNotifier extends StateNotifier<List<Course>> {
 
   Future<void> deleteCourse(int id) async {
     await ref.read(courseRepoProvider).deleteCourse(id);
-    getListCourse();
+    state = state.where((course) => course.id != id).toList();
   }
 }
 
 final courseProvider = StateNotifierProvider<CourseNotifier, List<Course>>(
-    (ref) => CourseNotifier(ref));
+  (ref) => CourseNotifier(ref),
+);
