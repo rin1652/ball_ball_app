@@ -30,15 +30,34 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       ),
       body: Center(
         child: SingleChildScrollView(
-          child: Column(children: [
-            ...listCourse.map((e) => Text(e.name)).toList(),
-            ElevatedButton(
-                onPressed: () {
-                  ref.read(courseProvider.notifier).createCourse(
-                      Course(id: 2, name: 'C++', description: 'C++ is dark'));
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(children: [
+              ...listCourse.map(
+                (e) {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(e.name),
+                      ElevatedButton(
+                          onPressed: () {
+                            ref
+                                .read(courseProvider.notifier)
+                                .deleteCourse(e.id);
+                          },
+                          child: const Text('Click delete')),
+                    ],
+                  );
                 },
-                child: const Text('Click add')),
-          ]),
+              ).toList(),
+              ElevatedButton(
+                  onPressed: () {
+                    ref.read(courseProvider.notifier).createCourse(
+                        Course(id: 2, name: 'C++', description: 'C++ is dark'));
+                  },
+                  child: const Text('Click add')),
+            ]),
+          ),
         ),
       ),
     );
