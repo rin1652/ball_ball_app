@@ -5,9 +5,9 @@ import '../../../domain/models/course.dart';
 import 'course_api.dart';
 import 'package:http/http.dart' as http;
 
-final courseApiProvider = Provider<CourseApi>((ref) => CourseRepositoryImpl());
+final courseApiProvider = Provider<CourseApi>((ref) => CourseApiImpl());
 
-class CourseRepositoryImpl implements CourseApi {
+class CourseApiImpl implements CourseApi {
   @override
   Future<List<Course>> getListCourse() async {
     final url = Uri.parse(link);

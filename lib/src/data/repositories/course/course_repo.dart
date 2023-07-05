@@ -1,31 +1,35 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../domain/models/course.dart';
-import '../../datasources/course/course_repository_impl.dart';
+import '../../datasources/course/course_api_impl.dart';
 
 final courseRepoProvider = Provider<CourseRepo>((ref) => CourseRepo(ref: ref));
 
 class CourseRepo {
   Ref ref;
 
+  // ignore: prefer_typing_uninitialized_variables
+  var _courseApiProvider;
+
   CourseRepo({
     required this.ref,
-  });
-
+  }) {
+    _courseApiProvider = ref.read(courseApiProvider);
+  }
   Future<List<Course>> getListCourse() async {
-    final courses = await ref.read(courseApiProvider).getListCourse();
+    final courses = await _courseApiProvider.getListCourse();
     return courses;
   }
 
   Future<void> createCourse(Course course) async {
-    await ref.read(courseApiProvider).createCourse(course);
+    await _courseApiProvider.createCourse(course);
   }
 
   Future<void> deleteCourse(int id) async {
-    await ref.read(courseApiProvider).deleteCourse(id);
+    await _courseApiProvider.deleteCourse(id);
   }
 
   Future<void> updateCourse(Course course) async {
-    await ref.read(courseApiProvider).updateCourse(course);
+    await _courseApiProvider.updateCourse(course);
   }
 }
