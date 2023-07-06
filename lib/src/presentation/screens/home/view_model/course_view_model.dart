@@ -3,9 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../data/repositories/course/course_repository.dart';
 import '../../../../domain/models/course.dart';
 
-class CourseNotifier extends StateNotifier<List<Course>> {
+class CourseViewModelNotifier extends StateNotifier<List<Course>> {
   Ref ref;
-  CourseNotifier(
+  CourseViewModelNotifier(
     this.ref,
   ) : super([]) {
     getListCourse();
@@ -27,6 +27,7 @@ class CourseNotifier extends StateNotifier<List<Course>> {
   }
 }
 
-final courseProvider = StateNotifierProvider<CourseNotifier, List<Course>>(
-  (ref) => CourseNotifier(ref),
+final courseProvider =
+    StateNotifierProvider<CourseViewModelNotifier, List<Course>>(
+  (ref) => CourseViewModelNotifier(ref),
 );
