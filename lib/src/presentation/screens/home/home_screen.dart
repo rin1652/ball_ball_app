@@ -1,4 +1,4 @@
-import 'package:ball_ball/src/presentation/screens/home/view_model/course_provider.dart';
+import 'package:ball_ball/src/presentation/screens/home/view_model/course_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
