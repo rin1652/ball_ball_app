@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../data/repositories/course/course_repo.dart';
+import '../../../../data/repositories/course/course_repository.dart';
 import '../../../../domain/models/course.dart';
 
 class CourseNotifier extends StateNotifier<List<Course>> {
