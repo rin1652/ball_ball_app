@@ -7,12 +7,14 @@ final courseRepoProvider =
     Provider<CourseRepository>((ref) => CourseRepository(ref: ref));
 
 class CourseRepository {
+
   Ref ref;
 
   // ignore: prefer_typing_uninitialized_variables
   var _courseApiProvider;
 
   CourseRepository({
+
     required this.ref,
   }) {
     _courseApiProvider = ref.read(courseApiProvider);
