@@ -45,7 +45,7 @@ class CourseApiImplement implements CourseApi {
 
   @override
   Future<void> deleteCourse(int id) async {
-    final url = Uri.parse('$AppConstants.apiUrl/$id');
+    final url = Uri.parse('${AppConstants.apiUrl}/$id');
     final response = await http.delete(
       url,
       headers: {
@@ -61,7 +61,7 @@ class CourseApiImplement implements CourseApi {
 
   @override
   Future<void> updateCourse(Course course) async {
-    final url = Uri.parse('$AppConstants.apiUrl/${course.id}');
+    final url = Uri.parse('${AppConstants.apiUrl}/${course.id}');
     final response = await http.delete(
       url,
       headers: {
