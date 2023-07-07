@@ -1,60 +1,61 @@
-import 'package:ball_ball/src/domain/models/course.dart';
 import 'package:http/http.dart';
 
-import '../../../utils/constants/app_api_url.dart';
 import 'package:http/http.dart' as http;
 
-class HttpService {
-  String domain = AppApiUrl.domainName;
+import '../utils/constants/app_api_url.dart';
 
-  Future<Response> postCourseService(String urlParam, Course course) async {
-    final uri = Uri.parse('$domain$urlParam');
+class HttpService {
+  final String _domain = AppApiUrl.domainName;
+
+  Future<Response> postService(
+      String urlParam, Map<String, dynamic> body) async {
+    final uri = Uri.parse('$_domain$urlParam');
     final response = await http.post(
       uri,
       headers: {
         'Authorization': 'Bearer token',
       },
-      body: Course.toMap(course),
+      body: body,
     );
-    return checkStatusCode(response);
+    return _handleResponse(response);
   }
 
-  Future<Response> getCourseService(String urlParam) async {
-    final uri = Uri.parse('$domain$urlParam');
+  Future<Response> getService(String urlParam) async {
+    final uri = Uri.parse('$_domain$urlParam');
     final response = await http.get(
       uri,
       headers: {
         'Authorization': 'Bearer token',
       },
     );
-    return checkStatusCode(response);
+    return _handleResponse(response);
   }
 
-  Future<Response> deleteCourseService(String urlParam, int id) async {
-    final uri = Uri.parse('$domain$urlParam/$id');
+  Future<Response> deleteService(String urlParam) async {
+    final uri = Uri.parse('$_domain$urlParam');
     final response = await http.delete(
       uri,
       headers: {
         'Authorization': 'Bearer token',
       },
     );
-    return checkStatusCode(response);
+    return _handleResponse(response);
   }
 
-  Future<Response> updateCourseService(
-      String urlParam, Course course, int id) async {
-    final uri = Uri.parse('$domain$urlParam/$id');
+  Future<Response> updateService(
+      String urlParam, Map<String, dynamic> body) async {
+    final uri = Uri.parse('$_domain$urlParam');
     final response = await http.put(
       uri,
       headers: {
         'Authorization': 'Bearer token',
       },
-      body: Course.toMap(course),
+      body: body,
     );
-    return checkStatusCode(response);
+    return _handleResponse(response);
   }
 
-  Response checkStatusCode(Response respose) {
+  Response _handleResponse(Response respose) {
     final int statusCode = respose.statusCode;
 
     // 200 ok GET, PUT, PATCH, DELETE

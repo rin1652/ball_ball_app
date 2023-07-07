@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../domain/models/course.dart';
-import '../../datasources/course/course_api_implement.dart';
+import '../../apis/course/course_api_implement.dart';
 
 final courseRepositoryProvider =
     Provider<CourseRepository>((ref) => CourseRepository(ref: ref));
