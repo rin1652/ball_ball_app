@@ -9,7 +9,6 @@ class AddButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    print("build button widget");
     return ElevatedButton(
       onPressed: () {
         ref.read(courseProvider.notifier).createCourse(

@@ -7,16 +7,18 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Demo repository"),
       ),
-      body: const Column(
+      body: Column(
         children: [
           // list course
-          SizedBox(height: 400, child: ListCourse()),
+          SizedBox(
+              height: mediaQuery.size.height * 0.8, child: const ListCourse()),
           // add course
-          AddButton(),
+          const AddButton(),
         ],
       ),
     );
