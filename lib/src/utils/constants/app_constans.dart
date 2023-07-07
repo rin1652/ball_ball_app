@@ -1,3 +1,3 @@
-class AppConstants {
-  static const int kLititPage = 5;
-}
+class AppConstants {}
+
+const int kLititPage = 5;

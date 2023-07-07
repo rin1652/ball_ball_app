@@ -1,3 +1,5 @@
 class AppApiUrl {
-  static const String course = 'http://localhost:3000/courses';
+  static const String course = '/courses';
+
+  static const String domainName = 'http://localhost:3000';
 }
